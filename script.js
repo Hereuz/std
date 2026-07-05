@@ -2,12 +2,12 @@ const page1 = document.getElementById("page1");
 const page2 = document.getElementById("page2");
 const envelope = document.getElementById("envelope");
 
-// état initial : enveloppe ouverte
+// état initial
 envelope.classList.add("open");
 
 envelope.addEventListener("click", () => {
 
-  // animation fermeture
+  // animation fermeture enveloppe
   envelope.classList.remove("open");
   envelope.classList.add("close");
 
@@ -17,7 +17,7 @@ envelope.addEventListener("click", () => {
     page1.classList.remove("active");
     page2.classList.add("active");
 
-    // reset état (optionnel sécurité)
+    // reset état (sécurité)
     envelope.classList.remove("close");
     envelope.classList.add("open");
 
