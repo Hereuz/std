@@ -1,15 +1,21 @@
+/* =========================
+   BASE
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
   overflow: hidden;
 }
 
-/* ---------------- PAGES ---------------- */
+/* =========================
+   PAGES SYSTEM
+========================= */
 
 .page {
   width: 100vw;
@@ -24,86 +30,93 @@ body {
   display: flex;
 }
 
-/* ---------------- PAGE 1 ---------------- */
-
-/* ---------------- PAGE 1 ---------------- */
+/* =========================
+   PAGE 1 - ENVELOPPE
+========================= */
 
 #page1 {
-  background: linear-gradient(135deg, #f6f6f6, #e9e9e9);
+  background: radial-gradient(circle at top, #f7f2ea, #e7dfd1);
 }
 
-/* ENVELOPPE (AGRANDIE) */
+/* enveloppe globale */
 .envelope {
-  width: 320px;   /* 🔧 + GRAND */
-  height: 200px;  /* 🔧 + GRAND */
+  width: 360px;
+  height: 240px;
   position: relative;
   cursor: pointer;
-  perspective: 900px;
+  perspective: 1000px;
+
+  /* ombre douce */
+  filter: drop-shadow(0 18px 25px rgba(0,0,0,0.15));
 }
 
-/* corps */
+/* corps enveloppe */
 .body {
   width: 100%;
   height: 100%;
-  background: #ffffff;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  position: relative;
-  z-index: 1;
+  position: absolute;
 
-  /* léger effet premium */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background:
+    linear-gradient(145deg, #fdfaf6, #e9e0d4);
+
+  border-radius: 14px;
+
+  /* texture papier légère */
+  box-shadow:
+    inset 0 2px 8px rgba(255,255,255,0.6),
+    inset 0 -8px 15px rgba(0,0,0,0.05);
+
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
-/* flap */
+/* flap (triangle supérieur) */
 .flap {
   width: 0;
   height: 0;
-  border-left: 160px solid transparent;
-  border-right: 160px solid transparent;
-  border-top: 110px solid #e9e9e9;
+
+  border-left: 180px solid transparent;
+  border-right: 180px solid transparent;
+  border-top: 120px solid #efe6da;
 
   position: absolute;
   top: 0;
   left: 0;
 
   transform-origin: top;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s ease;
+
   z-index: 3;
+
+  /* ombre flap */
+  filter: drop-shadow(0 6px 6px rgba(0,0,0,0.08));
 }
 
-/* LETTRE */
-.letter {
-  position: absolute;
-  width: 92%;
-  height: 92%;
-  background: #fafafa;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: 0.7s ease;
-  z-index: 2;
-  border-radius: 6px;
-
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+/* animation fermeture */
+.envelope.open .flap {
+  transform: rotateX(0deg);
 }
 
-/* LOGO (PLUS VISIBLE) */
+.envelope.close .flap {
+  transform: rotateX(180deg);
+}
+
+/* logo */
 .logo-container {
   position: absolute;
-  width: 85px;   /* 🔧 PLUS GRAND */
-  height: 85px;  /* 🔧 PLUS GRAND */
+  width: 95px;
+  height: 95px;
 
-  top: 25px;
+  top: 38%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+
   z-index: 4;
 
-  background: white;
+  background: rgba(255,255,255,0.85);
   border-radius: 50%;
   padding: 6px;
 
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
 .logo-container img {
@@ -113,47 +126,35 @@ body {
   object-fit: cover;
 }
 
-/* état OUVERT */
-.envelope.open .letter {
-  top: 12px;
-}
-
-.envelope.open .flap {
-  transform: rotateX(0deg);
-}
-
-/* état FERMÉ */
-.envelope.close .letter {
-  top: 100%;
-}
-
-.envelope.close .flap {
-  transform: rotateX(180deg);
-}
-
-/* petit texte */
+/* texte sous enveloppe */
 .hint {
   position: absolute;
-  bottom: 40px;
-  font-size: 14px;
-  color: #777;
+  bottom: 18%;
+  font-size: 15px;
+  color: #6b6257;
+  letter-spacing: 0.3px;
 }
-/* ---------------- PAGE 2 ---------------- */
+
+/* =========================
+   PAGE 2 (STRUCTURE VIDE)
+========================= */
 
 #page2 {
   background: url("background.jpg") center/cover no-repeat;
   flex-direction: column;
-  text-align: center;
   color: white;
+  text-align: center;
 }
 
+/* voile */
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
 }
 
+/* contenu */
 .content {
   position: relative;
   z-index: 2;
@@ -168,9 +169,9 @@ body {
 #formBtn {
   display: inline-block;
   padding: 12px 20px;
-  background: white;
-  color: black;
+  background: #ffffff;
+  color: #000;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   margin-top: 20px;
 }
